@@ -1,0 +1,15 @@
+[
+  { "id": 1, "name": "仪表盘", "icon": "House", "menuUrl": "/dashboard", "children": [] },
+  {
+    "id": 2,
+    "name": "系统管理",
+    "icon": "Setting",
+    "menuUrl": "/system/index",
+    "children": [
+      { "id": 3, "name": "用户管理", "icon": "User", "menuUrl": "/system/user", "children": [] },
+      { "id": 7, "name": "角色管理", "icon": "Operation", "menuUrl": "/system/role", "children": [] },
+      { "id": 8, "name": "资源管理", "icon": "Coin", "menuUrl": "/system/resource", "children": [] }
+    ]
+  },
+  { "id": 9, "name": "日志记录", "icon": "DataLine", "menuUrl": "/log", "children": [] }
+]

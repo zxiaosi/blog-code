@@ -1,0 +1,151 @@
+.Wrapper {
+  box-sizing: border-box;
+  margin-bottom: -1px;
+  padding-left: var(--spacing);
+  list-style: none;
+
+  &.clone {
+    display: inline-block;
+    padding: 0;
+    padding-top: 5px;
+    padding-left: 10px;
+    pointer-events: none;
+
+    .TreeItem {
+      --vertical-padding: 5px;
+      padding-right: 24px;
+      border-radius: 4px;
+      box-shadow: 0px 15px 15px 0 rgba(34, 33, 81, 0.1);
+    }
+  }
+
+  &.ghost {
+    &.indicator {
+      position: relative;
+      z-index: 1;
+      margin-bottom: -1px;
+
+      .TreeItem {
+        position: relative;
+        height: 8px;
+        padding: 0;
+        background-color: #56a1f8;
+        border-color: #2389ff;
+
+        /* 指示器前的小圆点 */
+        &:before {
+          position: absolute;
+          top: -4px;
+          left: -8px;
+          display: block;
+          width: 12px;
+          height: 12px;
+          background-color: #ffffff;
+          border: 1px solid #2389ff;
+          border-radius: 50%;
+          content: '';
+        }
+
+        > * {
+          height: 0;
+          /* Items are hidden using height and opacity to retain focus */
+          opacity: 0;
+        }
+      }
+    }
+
+    &:not(.indicator) {
+      opacity: 0.5;
+    }
+
+    .TreeItem > * {
+      background-color: transparent;
+      box-shadow: none;
+    }
+  }
+}
+
+.TreeItem {
+  --vertical-padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: var(--vertical-padding) 10px;
+  color: #222;
+  background-color: #fff;
+  /* border         : 1px solid #dedede; */
+}
+
+.TreeItem:hover {
+  background: #f7f8fb;
+  border-radius: 4px;
+}
+
+.Text {
+  flex-grow: 1;
+  padding-left: 0.4rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: default;
+}
+
+.Count {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+  background-color: #2389ff;
+  border-radius: 50%;
+}
+
+.disableInteraction {
+  pointer-events: none;
+}
+
+.clone {
+  .Text,
+  .Count {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
+
+.Collapse {
+  padding-top: 2px;
+  color: #919eab;
+  font-size: 12px;
+
+  svg {
+    transition: transform 250ms ease;
+  }
+
+  &.collapsed svg {
+    transform: rotate(-90deg);
+  }
+}
+
+/* 操作栏 */
+.operation {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 200px;
+  color: #0064ff;
+
+  div {
+    cursor: pointer;
+  }
+
+  div:hover {
+    color: #66a2ff;
+  }
+}

@@ -1,0 +1,69 @@
+.page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal {
+  .mask {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.45);
+    pointer-events: none;
+  }
+
+  .modal {
+    border: 0;
+    position: fixed;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    padding: 20px 24px;
+    z-index: 101;
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      cursor: move;
+
+      .title {
+        color: rgba(0, 0, 0, 0.88);
+      }
+
+      .close {
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .close:hover {
+        background-color: rgba(0, 0, 0, 0.04);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    }
+
+    .body {
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.88);
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: end;
+      margin-top: 12px;
+
+      button:last-child {
+        margin-left: 8px;
+      }
+    }
+  }
+}

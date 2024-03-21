@@ -1,0 +1,108 @@
+.page {
+  height: 100%;
+  display: flex;
+  position: relative;
+
+  .leftContent {
+    display: flex;
+    margin-right: 6px;
+
+    .menuContent {
+      width: 100%;
+      overflow-y: scroll;
+      border: 1px solid #ccc;
+      padding: 16px;
+
+      .title {
+        font-weight: bold;
+      }
+
+      .menuList {
+        margin-top: 16px;
+
+        .menu {
+          width: calc(100% - 5px); // 5px 是滚动条的宽度
+          padding: 10px;
+          display: flex;
+          border-top: 1px solid #ccc;
+          cursor: pointer;
+
+          .left {
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          .right {
+            width: calc(100% - 40px - 16px); // 40px 是图片的宽度，16px 是左右的 margin
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .itemTitle {
+              color: rgba(0, 0, 0, 0.88);
+              font-size: 16px;
+            }
+
+            .itemDesc {
+              color: rgba(0, 0, 0, 0.45);
+              font-size: 14px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+
+        .menu:last-child {
+          border-bottom: 1px solid #ccc;
+        }
+
+        .menu:hover {
+          background: rgba(0, 0, 0, 0.06);
+        }
+
+        .active {
+          background: #e6f4ff;
+          color: #1677ff;
+        }
+      }
+    }
+
+    .dragHandle {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(229, 230, 235);
+      cursor: col-resize;
+
+      .icon {
+        font-size: 12px;
+      }
+
+      .mask {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0);
+        cursor: col-resize;
+      }
+    }
+  }
+
+  .rightContent {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 16px;
+  }
+}

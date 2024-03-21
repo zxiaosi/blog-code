@@ -1,0 +1,66 @@
+.page {
+  height: 100%;
+  overflow: auto;
+
+  :global {
+    // 表格必填项 向上浮动
+    .ant-form-item-margin-offset {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 14px;
+
+    .title {
+      color: #000;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+    }
+  }
+
+  .table {
+    width: 100%;
+    height: max-content;
+
+    .tableHeader {
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 12px 8px;
+      font-weight: 600;
+      background: #fafafa;
+      border-bottom: 1px solid #dedede;
+      border-radius: 8px 8px 0 0;
+      border-collapse: separate;
+      border-spacing: 0;
+
+      .folderName {
+        position: relative;
+        flex: 1;
+        margin-left: 40px;
+      }
+
+      .folderName::before {
+        position: absolute;
+        top: 50%;
+        width: 1px;
+        height: 1.6em;
+        background-color: #f0f0f0;
+        transform: translateY(-50%);
+        transition: background-color 0.2s;
+        content: "";
+        inset-inline-end: 0;
+      }
+
+      .operation {
+        width: 200px;
+        margin-left: 8px;
+        text-align: center;
+      }
+    }
+  }
+}

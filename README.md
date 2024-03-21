@@ -1,5 +1,5 @@
-## React18 + Tinymce6 大文本功能演示
+## Vue3 动态路由
 
 ## 功能演示
 
-- [zxiaosi-react-tinymce-largetext.vercel.app](https://zxiaosi-react-tinymce-largetext.vercel.app/)
++ [zxiaosi-vue3-router.vercel.app](https://zxiaosi-vue3-router.vercel.app/)

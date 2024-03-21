@@ -1,6 +1,0 @@
-/* 因为stackblitz单个文件不能大于1MB, 并没有实际引入, 实际使用时引入即可 */
-
-@font-face {
-  font-family: custom_font;
-  src: url(./custom_font.ttf);
-}

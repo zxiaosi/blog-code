@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -70%);
+}
+
+.page,
+.hitokoto,
+.title,
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page,
+.hitokoto,
+.login {
+  flex-direction: column;
+}
+
+.login > input:first-child {
+  margin-bottom: 20px;
+}
+
+.hitokoto > .text {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.btn {
+  width: max-content;
+  padding: 10px;
+  color: #fff;
+  background-color: #1677ff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  margin: 20px;
+}

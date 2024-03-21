@@ -1,0 +1,43 @@
+@colorBg: #fff;
+
+.sider {
+  min-height: 100vh;
+  overflow  : auto;
+  position  : fixed;
+  left      : 0;
+  top       : 0;
+  bottom    : 0;
+
+  .title {
+    color          : @colorBg;
+    height         : 32px;
+    margin         : 16px;
+    background     : rgba(255, 255, 255, .2);
+    border-radius  : 6px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+  }
+}
+
+.header {
+  padding         : 0 16px;
+  background-color: @colorBg;
+  display         : flex;
+  align-items     : center;
+  justify-content : flex-end;
+
+
+  .right {
+    display    : flex;
+    align-items: center;
+  }
+}
+
+.content {
+  margin    : 24px 16px;
+  padding   : 24px;
+  max-height: calc(100vh - 64px - 48px); // 64px 头部 48px 外边距
+  overflow  : overlay;
+  background: @colorBg;
+}

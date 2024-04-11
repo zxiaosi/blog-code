@@ -1,0 +1,59 @@
+@imageSize: 400px;
+
+.page {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  margin-right: -8px;
+  padding-right: 8px;
+
+  .btn {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .pdf {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+
+    .pdfHeader {
+      width: 100%;
+      padding: 15px 0;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: bold;
+      text-align: center;
+      border: 1px solid red;
+    }
+
+    .pdfContent {
+      display: grid;
+      gap: 10px;
+      place-items: center;
+      grid-template-columns: repeat(auto-fill, minmax(@imageSize, 1fr));
+      padding: 10px;
+
+      .imageItem {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: @imageSize;
+        height: @imageSize;
+
+        img {
+          max-width: @imageSize;
+          max-height: @imageSize;
+        }
+      }
+    }
+
+    .pdfFooter {
+      width: 100%;
+      padding: 15px 0;
+      color: rgba(0, 0, 0, 0.85);
+      font-weight: bold;
+      text-align: center;
+      border: 1px solid red;
+    }
+  }
+}

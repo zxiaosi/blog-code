@@ -1,16 +1,14 @@
-import { Button, Spin, message, Image } from "antd";
-import styles from "./index.module.less";
-import { useState } from "react";
-import { outputPDF } from "../../utils/exportPdf";
+import { Button, Spin, message, Image } from 'antd';
+import styles from './index.module.less';
+import { useState } from 'react';
+import { outputPDF } from '../../utils/exportPdf';
+import imageUrl from '../../assets/antd.png';
 
 /** 消息全局Key */
-const messageKey = "globalMessageKey";
+const messageKey = 'globalMessageKey';
 
 /** PDF内容宽度 */
 const contentWidth = 560;
-
-/** 图片链接 */
-const imageUrl = "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png";
 
 /** 图片分页PDF示例 */
 const ImagePagination = () => {
@@ -18,20 +16,26 @@ const ImagePagination = () => {
 
   /** 下载 */
   const handleDownload = async () => {
-    const header = document.getElementById("pdfHeader")!;
-    const element = document.getElementById("pdfContent");
-    const footer = document.getElementById("pdfFooter")!;
+    const header = document.getElementById('pdfHeader')!;
+    const element = document.getElementById('pdfContent');
+    const footer = document.getElementById('pdfFooter')!;
 
     if (element) {
       try {
-        message.loading({ content: "导出中...", key: messageKey });
+        message.loading({ content: '导出中...', key: messageKey });
         setLoading(true);
-        await outputPDF({ element, footer, header, contentWidth, filename: "图片分页.pdf" });
+        await outputPDF({
+          element,
+          footer,
+          header,
+          contentWidth,
+          filename: '图片分页.pdf',
+        });
         setLoading(false);
-        message.success({ content: "导出成功！", key: messageKey });
+        message.success({ content: '导出成功！', key: messageKey });
       } catch (error) {
         setLoading(false);
-        message.error({ content: "导出失败！", key: messageKey });
+        message.error({ content: '导出失败！', key: messageKey });
       }
     }
   };

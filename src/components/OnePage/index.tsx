@@ -15,15 +15,13 @@ const OnePage = () => {
 
   /** 下载 */
   const handleDownload = async () => {
-    const header = document.getElementById("pdfHeader")!;
     const element = document.getElementById("pdfContent");
-    const footer = document.getElementById("pdfFooter")!;
 
     if (element) {
       try {
         message.loading({ content: "导出中...", key: messageKey });
         setLoading(true);
-        await outputPDF({ element, footer, header, contentWidth, filename: "一页.pdf" });
+        await outputPDF({ element, contentWidth, filename: "一页.pdf" });
         setLoading(false);
         message.success({ content: "导出成功！", key: messageKey });
       } catch (error) {

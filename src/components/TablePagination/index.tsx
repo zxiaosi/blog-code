@@ -37,7 +37,7 @@ const getData = (count: number) => {
 const AutoPagination = () => {
   const [loading, setLoading] = useState(false);
 
-  const data = useMemo(() => getData(100), []);
+  const data = useMemo(() => getData(50), []);
 
   /** 下载 */
   const handleDownload = async () => {
@@ -67,7 +67,7 @@ const AutoPagination = () => {
 
       <Spin spinning={loading}>
         {/* 不设置宽度, 默认以 父元素的的宽度 为 PDF宽度   */}
-        <div className={styles.pdf}>
+        <div className={styles.pdf} style={{ width: contentWidth * 2 }}>
           <div id="pdfHeader" className={styles.pdfHeader}></div>
 
           <div id="pdfContent" className={styles.pdfContent}>

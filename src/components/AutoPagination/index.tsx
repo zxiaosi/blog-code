@@ -41,7 +41,7 @@ const AutoPagination = () => {
 
       <Spin spinning={loading}>
         {/* 不设置宽度, 默认以 父元素的的宽度 为 PDF宽度   */}
-        <div className={styles.pdf}>
+        <div className={styles.pdf} style={{ width: contentWidth * 2 }}>
           <div id="pdfHeader" className={styles.pdfHeader}></div>
 
           <div id="pdfContent" className={styles.pdfContent}>
@@ -66,23 +66,6 @@ const AutoPagination = () => {
               <div>我是内容</div>
               <div>我是内容</div>
               <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
             </div>
 
             <div className="divide-inside" style={{ marginBottom: 40 }}>
@@ -106,43 +89,9 @@ const AutoPagination = () => {
               <div>我是内容</div>
               <div>我是内容</div>
               <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
             </div>
 
             <div className="divide-inside" style={{ marginBottom: 40 }}>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
-              <div>我是内容</div>
               <div>我是内容</div>
               <div>我是内容</div>
               <div>我是内容</div>

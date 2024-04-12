@@ -2,13 +2,16 @@ import { Button, Spin, message, Image } from "antd";
 import styles from "./index.module.less";
 import { useState } from "react";
 import { outputPDF } from "../../utils/exportPdf";
-import imageUrl from "../../assets/antd.png";
+// import imageUrl from "../../assets/antd.png";
 
 /** 消息全局Key */
 const messageKey = "globalMessageKey";
 
 /** PDF内容宽度 */
 const contentWidth = 560;
+
+/** 图片url */
+const imageUrl = "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png";
 
 /** 图片分页PDF示例 */
 const ImagePagination = () => {
@@ -53,34 +56,34 @@ const ImagePagination = () => {
 
           <div id="pdfContent" className={styles.pdfContent}>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
             <div className={styles.imageItem}>
-              <Image src={imageUrl} />
+              <Image src={imageUrl} crossOrigin="anonymous" />
             </div>
           </div>
 

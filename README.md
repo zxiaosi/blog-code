@@ -38,6 +38,12 @@
 
 ### HTML2Canvas + JsPDF 导出PDF
 
-- [offices 分支](https://github.com/zxiaosi/blog-code/tree/offices)
+- [HTML2Canvas-JsPDF 分支](https://github.com/zxiaosi/blog-code/tree/HTML2Canvas-JsPDF)
 
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/offices?file=src%2Fmain.ts)
+- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/HTML2Canvas-JsPDF?file=src%2Fmain.ts)
+
+### Fortune-Sheet + ExcelJS 导出 Excel
+
+- [HTML2Canvas-JsPDF 分支](https://github.com/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS)
+
+- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS?file=src%2Fmain.ts)

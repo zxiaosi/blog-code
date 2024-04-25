@@ -44,6 +44,6 @@
 
 ### Fortune-Sheet + ExcelJS 导出 Excel
 
-- [HTML2Canvas-JsPDF 分支](https://github.com/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS)
+- [FortuneSheet-ExcelJS 分支](https://github.com/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS)
 
 - [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS?file=src%2Fmain.ts)

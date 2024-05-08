@@ -1,0 +1,27 @@
+.page {
+  width: 90%;
+  height: calc(100vh - 64px);
+  padding: 24px;
+
+  .btnGroup {
+    display: flex;
+    justify-content: space-between;
+
+    .btn {
+      flex: 1;
+      margin-bottom: 24px;
+
+      :global {
+        .ant-upload,
+        .ant-btn {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    height: calc(100% - 48px);
+  }
+}

@@ -1,3 +1,14 @@
+/** 将单元格坐标转为对应的行列索引 */
+export const handleCellToRowCol = (cell: string) => {
+  // 将字母部分转换为大写
+  const colIndex = cell.substring(0, 1).toUpperCase();
+  // 提取数字部分并转换为数字
+  const row = parseInt(cell.substring(1));
+  // 将列转换为从 1 开始的数字，A 对应 1，B 对应 2，依此类推
+  const col = colIndex.charCodeAt(0) - "A".charCodeAt(0) + 1;
+  return { row, col };
+};
+
 /**
  * 转换内部链接引用
  * @param reference - 内部链接引用
@@ -13,7 +24,7 @@ export const handleConvertReference = (reference: string) => {
 
     // 检查工作表名称是否已经用单引号包裹
     if (!sheetName.startsWith("'")) {
-      sheetName = `'${sheetName}'`;
+      sheetName = `${sheetName}`;
     }
 
     // 在原始引用前添加 #
@@ -61,64 +72,45 @@ export function handleColorToARGB(color: string, defaultColor?: string) {
 }
 
 /**
+ * 将 ARGB 颜色值转换为 RGB 格式
+ */
+export function handleArgbToHex(argb?: string) {
+  if (!argb) return undefined;
+  return argb.replace("FF", "#");
+}
+
+/**
  * 处理类型
  * @param type 类型
- * @param text 文本
- * @param textType 文本类型
  * @param v1 计算值1
  * @param v2 计算值2
  */
-export const handleOperator = (type: string, text?: any, textType?: any, v1?: any, v2?: any) => {
-  let compute1 = Number(0);
-  let compute2 = Number(0);
-
-  if (textType === "date") {
-    text = new Date(text).valueOf();
-    compute1 = new Date(v1).valueOf();
-    compute2 = new Date(v2).valueOf();
-  }
-
-  if (textType === "textLength") {
-    text = text?.length;
-  }
-
-  compute1 = Number(v1);
-  compute2 = Number(v2);
-
+export const handleOperator = (type: string, v1?: any, v2?: any) => {
   switch (type) {
-    case "between": {
-      const flag = Number(text) > compute1 && Number(text) < compute2;
-      return { flag, tip: `介于${v1}和${v2}之间` };
-    }
-    case "notBetween": {
-      const flag = Number(text) < compute1 || Number(text) > compute2;
-      return { flag, tip: `不介于${v1}和${v2}之间` };
-    }
-    case "equal": {
-      const flag = Number(text) === compute1;
-      return { flag, tip: `等于${v1}` };
-    }
-    case "notEqual": {
-      const flag = Number(text) !== compute1;
-      return { flag, tip: `不等于${v1}` };
-    }
-    case "greaterThan": {
-      const flag = Number(text) > compute1;
-      return { flag, tip: `大于${v1}` };
-    }
-    case "lessThan": {
-      const flag = Number(text) < compute1;
-      return { flag, tip: `小于${v1}` };
-    }
-    case "greaterThanOrEqual": {
-      const flag = Number(text) >= compute1;
-      return { flag, tip: `大于等于${v1}` };
-    }
-    case "lessThanOrEqual": {
-      const flag = Number(text) <= compute1;
-      return { flag, tip: `小于等于${v1}` };
-    }
+    case "between":
+      return `介于${v1}和${v2}之间`;
+    case "notBetween":
+      return `不介于${v1}和${v2}之间`;
+    case "equal":
+      return `等于${v1}`;
+    case "notEqual":
+      return `不等于${v1}`;
+    case "greaterThan":
+      return `大于${v1}`;
+    case "lessThan":
+      return `小于${v1}`;
+    case "greaterThanOrEqual":
+      return `大于等于${v1}`;
+    case "lessThanOrEqual":
+      return `小于等于${v1}`;
     default:
-      return { flag: false, tip: "" };
+      return "";
   }
+};
+
+/** 获取最大值 */
+export const handleMaxValue = (...numbers: any[]) => {
+  const filteredNumbers = numbers.filter((num) => typeof num === "number");
+  if (filteredNumbers.length === 0) return 0; // 没有有效的数值参数
+  return Math.max(...filteredNumbers);
 };

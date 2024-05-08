@@ -1,6 +1,7 @@
 import { Sheet, Cell, SheetConfig } from "@fortune-sheet/core";
-import ExcelJS, { Alignment, Border, BorderStyle, Borders, CellModel, CellValue, Fill, Font, Workbook, Worksheet, WorksheetView } from "exceljs";
+import ExcelJS, { Alignment, Border, BorderStyle, Borders, CellModel, CellValue, DataValidation, Fill, Font, Workbook, Worksheet, WorksheetView } from "exceljs";
 import { handleConvertReference, handleColorToARGB, handleOperator } from "./tool";
+import { borderStyleMap, getValueByKey, horizontalAlignmentMap, textRotationMap, verticalAlignmentMap, wrapTextMap } from "./enum";
 
 /**
  * excel 单元格默认的宽度和高度 是 8.43 和 15
@@ -23,10 +24,10 @@ const defaultColWidth = 73;
 const defaultRowHeight = 19;
 
 /** fortune-sheet 默认行数 */
-const defaultRows = 84;
+const defaultRows = 36;
 
 /** fortune-sheet 默认列数 */
-const defaultColumns = 60;
+const defaultColumns = 18;
 
 /**
  * 处理行高、列宽、隐藏行、隐藏列
@@ -128,7 +129,7 @@ const handleImages = (workbook: Workbook, worksheet: Worksheet, sheetData: Sheet
     if (row === 0) row = top / defaultRowHeight; // 如果不存在自定义行和隐藏行, 设置行默认值
 
     const imageId = workbook.addImage({ base64: src, extension: "png" });
-    worksheet.addImage(imageId, { tl: { col, row }, ext: { width, height } });
+    worksheet.addImage(imageId, { tl: { col, row }, ext: { width, height }, editAs: "absolute" });
   }
 
   return worksheet;
@@ -143,51 +144,10 @@ const handleBorder = (worksheet: Worksheet, borderInfo: any[] = []) => {
   if (!borderInfo) return worksheet;
 
   borderInfo?.forEach((border) => {
-    let style = "thin" as BorderStyle;
     let realBorder = {} as Partial<Borders>;
     const { row, column } = border?.range?.[0] || {};
 
-    switch (border?.style) {
-      case "1":
-        style = "thin" /* 细线 */;
-        break;
-      case "2":
-        style = "hair" /* 虚线 */;
-        break;
-      case "3":
-        style = "dotted" /* 点线 */;
-        break;
-      case "4":
-        style = "dashed" /* 虚线 */;
-        break;
-      case "5":
-        style = "dashDot" /* 点划线 */;
-        break;
-      case "6":
-        style = "dashDotDot" /* 双点划线 */;
-        break;
-      case "7":
-        style = "double" /* 双线 */;
-        break;
-      case "8":
-        style = "medium" /* 粗线 */;
-        break;
-      case "9":
-        style = "mediumDashed" /* 中等虚线 */;
-        break;
-      case "10":
-        style = "mediumDashDot" /* 中等点划线 */;
-        break;
-      case "11":
-        style = "mediumDashDotDot" /* 中等双点划线 */;
-        break;
-      case "12":
-        style = "slantDashDot" /* 斜线 */;
-        break;
-      case "13":
-        style = "thick" /* 厚线 */;
-        break;
-    }
+    const style = getValueByKey(borderStyleMap, border?.style) as BorderStyle;
 
     switch (border?.borderType) {
       case "border-left" /* 左框线 */:
@@ -196,7 +156,7 @@ const handleBorder = (worksheet: Worksheet, borderInfo: any[] = []) => {
       case "border-bottom" /* 下框线 */: {
         const key = border?.borderType?.slice?.(7);
         const currentCell = worksheet.getCell(row?.[0] + 1, column?.[0] + 1);
-        currentCell.border = { [key]: { style, color: { argb: handleColorToARGB(border?.color) } } };
+        currentCell.border = { ...currentCell.border, [key]: { style, color: { argb: handleColorToARGB(border?.color) } } };
         break;
       }
       case "border-none" /* 无 */:
@@ -320,11 +280,11 @@ const handleFrozen = (worksheet: Worksheet, frozen: Sheet["frozen"]): Worksheet[
 /**
  * 处理自动筛选器: https://github.com/exceljs/exceljs/blob/master/README_zh.md#%E8%87%AA%E5%8A%A8%E7%AD%9B%E9%80%89%E5%99%A8
  * - excelJs 没有 filter 参数
- * @param filter_select Sheet["filter_select"] 自动筛选器
+ * @param filter_select 自动筛选器
  */
 const handleAutoFilter = (filter_select: Sheet["filter_select"]): Worksheet["autoFilter"] => {
-  if (filter_select) {
-    const { column, row } = filter_select;
+  if (filter_select && Object.keys(filter_select).length > 0) {
+    const { row, column } = filter_select;
     return {
       from: { row: row[0], column: column[0] },
       to: { row: row[1], column: column[1] },
@@ -396,7 +356,7 @@ const handleFont = (cell: Cell): Partial<Font> => {
     italic: it === 1, // 斜体
     underline: un === 1, // 下划线
     strike: cl === 1, // 删除线
-    color: { argb: handleColorToARGB(fc, "FF000000") }, // 颜色
+    color: { argb: handleColorToARGB(fc!, "FF000000") }, // 颜色
   };
 };
 
@@ -421,59 +381,21 @@ const handleAlignment = (cell: Cell): Partial<Alignment> => {
     textRotation: 0,
   };
 
-  switch (vt + "") {
-    case "1" /* 顶部对齐 */:
-      alignment.vertical = "top";
-      break;
-    case "2" /* 底部对齐 */:
-      alignment.vertical = "bottom";
-      break;
-    case "0" /* 居中对齐 */:
-      alignment.vertical = "middle";
-      break;
-  }
-
-  switch (ht + "") {
-    case "1" /* 左对齐 */:
-      alignment.horizontal = "left";
-      break;
-    case "2" /* 右对齐 */:
-      alignment.horizontal = "right";
-      break;
-    case "0" /* 居中对齐 */:
-      alignment.horizontal = "center";
-      break;
-  }
-
   switch (tb + "") {
     case "0" /* 截断 */:
       alignment.horizontal = "fill";
       break;
     case "1" /* 溢出 */:
-      alignment.wrapText = false;
-      break;
     case "2" /* 自动换行 */:
-      alignment.wrapText = true;
+      alignment.wrapText = getValueByKey(wrapTextMap, vt + "");
       break;
   }
 
-  switch (rt + "") {
-    case "1" /* 向上倾斜 */:
-      alignment.textRotation = 45;
-      break;
-    case "2" /* 向下倾斜 */:
-      alignment.textRotation = -45;
-      break;
-    case "3" /* 竖排文字 */:
-      alignment.textRotation = "vertical";
-      break;
-    case "4" /* 向上90° */:
-      alignment.textRotation = 90;
-      break;
-    case "5" /* 向下90° */:
-      alignment.textRotation = -90;
-      break;
-  }
+  alignment.vertical = getValueByKey(verticalAlignmentMap, vt + ""); // 垂直对齐
+
+  alignment.horizontal = getValueByKey(horizontalAlignmentMap, ht + ""); // 水平对齐
+
+  alignment.textRotation = getValueByKey(textRotationMap, rt + ""); // 文本角度
 
   return alignment;
 };
@@ -512,103 +434,84 @@ const handleNote = (ps: Cell["ps"]): string | CellModel["comment"] => {
  * @param c 列
  * @param v 值
  */
-const handleDataValidation = (dataVerification: Sheet["dataVerification"], r: number, c: number, v: any): CellModel["dataValidation"] => {
-  if (!dataVerification) return undefined;
-
+const handleDataValidation = (dataVerification: Sheet["dataVerification"], r: number, c: number): DataValidation => {
   const dv = dataVerification?.[r + "_" + c];
-
-  if (!dv) return undefined;
 
   switch (dv?.type) {
     case "dropdown" /* 下拉框 */: {
-      const tip = "你选择的不是下拉列表中的选项";
-
-      const flag = dv?.value1?.split?.(",").includes(v?.v) || false;
-
       return {
         type: "list",
         formulae: [`"${dv?.value1}"`],
         allowBlank: true,
-        showInputMessage: dv?.hintShow || !flag,
+        showInputMessage: dv?.hintShow,
         // promptTitle: "提示",
-        prompt: dv?.hintValue || tip,
+        prompt: dv?.hintValue,
         showErrorMessage: dv?.prohibitInput,
         // errorTitle: "错误",
-        error: tip,
+        error: "你选择的不是下拉列表中的选项",
       };
     }
     case "number_integer" /* 整数 */: {
-      const { flag, tip } = handleOperator(dv?.type2, v?.v, "number", dv?.value1, dv?.value2);
-      const tooltop = `你输入的不是${tip}的整数`;
+      const tip = handleOperator(dv?.type2, dv?.value1, dv?.value2);
 
       return {
         type: "whole",
         operator: dv?.type2,
         formulae: [Number(dv?.value1), Number(dv?.value2)],
         allowBlank: true,
-        showInputMessage: dv?.hintShow || !flag || false,
-        // promptTitle: "提示",
-        prompt: dv?.hintValue || tooltop,
+        showInputMessage: dv?.hintShow,
+        prompt: dv?.hintValue,
         showErrorMessage: dv?.prohibitInput,
-        // errorTitle: "错误",
-        error: tooltop,
+        error: `你输入的不是${tip}的整数`,
       };
     }
     case "number_decimal" /* 小数 */: {
-      const { flag, tip } = handleOperator(dv?.type2, v?.v, "number", dv?.value1, dv?.value2);
-      const tooltop = `你输入的不是${tip}的小数`;
+      const tip = handleOperator(dv?.type2, dv?.value1, dv?.value2);
 
       return {
         type: "decimal",
         operator: dv?.type2,
         formulae: [Number(dv?.value1), Number(dv?.value2)],
         allowBlank: true,
-        showInputMessage: dv?.hintShow || !flag || false,
-        // promptTitle: "提示",
-        prompt: dv?.hintValue || tooltop,
+        showInputMessage: dv?.hintShow,
+        prompt: dv?.hintValue,
         showErrorMessage: dv?.prohibitInput,
-        // errorTitle: "错误",
-        error: tooltop,
+        error: `你输入的不是${tip}的小数`,
       };
     }
     case "text_length" /* 文本长度 */: {
-      const { flag, tip } = handleOperator(dv?.type2, v?.v, "textLength", dv?.value1, dv?.value2);
-      const tooltop = `你输入的不是长度${tip}的文本`;
+      const tip = handleOperator(dv?.type2, dv?.value1, dv?.value2);
 
       return {
         type: "textLength",
         operator: dv?.type2,
         formulae: [Number(dv?.value1), Number(dv?.value2)],
         allowBlank: true,
-        showInputMessage: dv?.hintShow || !flag || false,
-        // promptTitle: "提示",
-        prompt: dv?.hintValue || tooltop,
+        showInputMessage: dv?.hintShow,
+        prompt: dv?.hintValue,
         showErrorMessage: dv?.prohibitInput,
-        // errorTitle: "错误",
-        error: tooltop,
+        error: `你输入的不是长度${tip}的文本`,
       };
     }
     case "date" /* 日期 */: {
-      const { flag, tip } = handleOperator(dv?.type2, v?.v, "date", dv?.value1, dv?.value2);
-      const tooltop = `你输入的不是${tip}的日期`;
+      const tip = handleOperator(dv?.type2, dv?.value1, dv?.value2);
 
       return {
         type: "date",
         operator: dv?.type2,
         formulae: [new Date(dv?.value1), new Date(dv?.value2)],
         allowBlank: true,
-        showInputMessage: dv?.hintShow || !flag || false,
-        // promptTitle: "提示",
-        prompt: dv?.hintValue || tooltop,
+        showInputMessage: dv?.hintShow,
+        prompt: dv?.hintValue,
         showErrorMessage: dv?.prohibitInput,
-        // errorTitle: "错误",
-        error: tooltop,
+        error: `你输入的不是${tip}的日期`,
       };
     }
     case "number" /* 数字 */:
     case "text_content" /** 文本内容 */:
     case "validity" /* 有效性 */:
     case "checkbox" /* 复选框 */:
+    default:
       // 这里处理的都是 exceljs 不支持的类型 - x.x
       return { type: "custom", formulae: [], allowBlank: true };
   }
@@ -619,7 +522,7 @@ const handleDataValidation = (dataVerification: Sheet["dataVerification"], r: nu
  * @param workbook ExcelJS.Workbook
  * @param fileName 文件名
  */
-export const downloadExcel = async (workbook: Workbook, fileName: string = "temp.xlsx") => {
+export const handleDownloadExcel = async (workbook: Workbook, fileName: string = "temp.xlsx") => {
   // 将工作簿转换为二进制数据
   const buffer = await workbook.xlsx.writeBuffer();
   const blob = new Blob([buffer], { type: "application/octet-stream" });
@@ -637,8 +540,14 @@ export const downloadExcel = async (workbook: Workbook, fileName: string = "temp
   document.body.removeChild(link);
 };
 
-/** 导出Excel */
-export function exportExcel(workbookData: Sheet[], fileName: string) {
+/**
+ * 导出Excel
+ * - 问题1: 列宽和行高改变时会影响图片的位置
+ * - 问题2: excelJs 没有 filter 参数
+ * @param workbookData 工作簿数据
+ * @param fileName 文件名
+ */
+export const handleExportExcel = async (workbookData: Sheet[], fileName: string) => {
   // 创建一个工作簿
   const workbook = new ExcelJS.Workbook();
 
@@ -683,12 +592,16 @@ export function exportExcel(workbookData: Sheet[], fileName: string) {
       const newRow = row.map((cell, c) => {
         if (!cell) return null;
 
-        const { f, v, m, ct, bg, ps } = cell; // 单元格
+        const { f, m, v, ct, hl, bg, ps } = cell; // 单元格
 
         const currentCell = worksheet.getCell(r + 1, c + 1); // 获取单元格
 
+        // currentCell.model.type = 1; // 默认类型
+        // currentCell.model.text = m ? m + "" : undefined; // 默认文本
+        // currentCell.model.value = v; // 默认值
+
         if (f) currentCell.value = handleFormula(f, v); // 公式值
-        else if (hyperlink) currentCell.value = handleHyperlink(hyperlink, r, c, v); // 超链接
+        else if (hl) currentCell.value = handleHyperlink(hyperlink, r, c, v); // 超链接
         else currentCell.value = handleNormalValue(ct, m); // 正常值
 
         if (ct) currentCell.numFmt = handleNumFmt(ct); // 数字格式
@@ -699,9 +612,9 @@ export function exportExcel(workbookData: Sheet[], fileName: string) {
 
         if (cell) currentCell.alignment = handleAlignment(cell); // 对齐方式
 
-        if (ps) currentCell.note = handleNote(ps); // 处理注释
+        if (ps) currentCell.note = handleNote(ps); // 注释
 
-        if (dataVerification) currentCell.dataValidation = handleDataValidation(dataVerification, r, c, v); // 数据验证
+        if (dataVerification) currentCell.dataValidation = handleDataValidation(dataVerification, r, c); // 数据验证
 
         if (config?.merge) worksheet = handleMergeCells(worksheet, config?.merge, r, c); // 合并单元格
       });
@@ -711,5 +624,5 @@ export function exportExcel(workbookData: Sheet[], fileName: string) {
   });
 
   // 下载Excel
-  downloadExcel(workbook, fileName);
-}
+  await handleDownloadExcel(workbook, fileName);
+};

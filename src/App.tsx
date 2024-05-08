@@ -1,10 +1,10 @@
-import './App.css';
-import ExportExcel from './components/exportExcel';
+import "./App.css";
+import ImportExportExcel from "./components/ImportExportExcel";
 
 function App() {
   return (
     <>
-      <ExportExcel />
+      <ImportExportExcel />
     </>
   );
 }

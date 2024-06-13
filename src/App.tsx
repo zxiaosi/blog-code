@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import './App.css';
-import CustomEditor from './components/CustomEditor';
+import { useState } from "react";
+import CustomEditor from "./components/CustomEditor";
+import "./App.css";
 
 function App() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
 
   return (
     <div className="page">

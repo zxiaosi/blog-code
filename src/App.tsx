@@ -152,8 +152,7 @@ function App() {
   // }, []);
 
   /** 提交事件 */
-  const handleSave = useCallback((e?: any) => {
-    // ctrl + s 保存时获取不到 editorContent, 故从参数中获取
+  const handleSave = useCallback((e?: TinyMCEEditor) => {
     const realValue = editorRef.current?.getContent();
     const mergetText = originalValue.current ? realValue?.split(largeTextSeparator)?.[0] + originalValue.current : realValue;
     console.log("%c 提交的内容: ", "color: red", mergetText);

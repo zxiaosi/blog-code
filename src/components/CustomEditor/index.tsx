@@ -55,7 +55,6 @@ const Index: React.FC<Props> = (props) => {
 
   /** 富文本改变事件 */
   const handleEditorChange = (newValue: string, editor: TinyMCEEditor) => {
-    editorRef.current = editor;
     onChangeValue?.(newValue);
   };
 
@@ -121,6 +120,7 @@ const Index: React.FC<Props> = (props) => {
             "自定义字体=custom font;", // 自定义字体(因为stackblitz单个文件不能大于1MB, 并没有实际引入, 实际使用时引入即可)
           content_style: `body { font-family:"微软雅黑"; }`,
         }}
+        onInit={(evt, editor) => (editorRef.current = editor)}
         onEditorChange={handleEditorChange}
       />
     </div>

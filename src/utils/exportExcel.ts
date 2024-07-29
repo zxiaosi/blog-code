@@ -602,7 +602,7 @@ export const handleExportExcel = async (workbookData: Sheet[], fileName: string)
 
         if (f) currentCell.value = handleFormula(f, v); // 公式值
         else if (hl) currentCell.value = handleHyperlink(hyperlink, r, c, v); // 超链接
-        else currentCell.value = handleNormalValue(ct, m); // 正常值
+        else currentCell.value = handleNormalValue(ct, m || v); // 正常值
 
         if (ct) currentCell.numFmt = handleNumFmt(ct); // 数字格式
 

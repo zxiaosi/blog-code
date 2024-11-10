@@ -2,20 +2,20 @@ import { Suspense, useState } from 'react';
 import './App.css';
 import { QueryClient, QueryClientProvider, useSuspenseQuery } from '@tanstack/react-query';
 
+const queryClient = new QueryClient();
+
 function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <QueryClientProvider client={new QueryClient()}>
-      <>
-        <button onClick={() => setIsOpen((x) => !x)}>toggle</button>
-        {isOpen && (
-          <Suspense fallback="loading...">
-            <Thing1 />
-            <Thing2 />
-          </Suspense>
-        )}
-      </>
+    <QueryClientProvider client={queryClient}>
+      <button onClick={() => setIsOpen((x) => !x)}>toggle</button>
+      {isOpen && (
+        <Suspense fallback="loading...">
+          <Thing1 />
+          <Thing2 />
+        </Suspense>
+      )}
     </QueryClientProvider>
   );
 }

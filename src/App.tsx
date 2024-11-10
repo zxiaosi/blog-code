@@ -1,12 +1,7 @@
-import "./App.css";
-import ImportExportExcel from "./components/ImportExportExcel";
+import './App.css';
 
 function App() {
-  return (
-    <>
-      <ImportExportExcel />
-    </>
-  );
+  return <>Hello, World</>;
 }
 
 export default App;

@@ -1,49 +1,30 @@
-import { Suspense, useState } from 'react';
+import * as components from './components';
 import './App.css';
-import { QueryClient, QueryClientProvider, useSuspenseQuery } from '@tanstack/react-query';
 
-const queryClient = new QueryClient();
+const items = [
+  { key: 'SuspenseDemo', label: 'Suspense' },
+  { key: 'RefDemo', label: <a href="https://zh-hans.react.dev/blog/2024/04/25/react-19#ref-as-a-prop">ref 作为一个属性</a> },
+];
 
 function App() {
-  const [isOpen, setIsOpen] = useState(false);
+  /** 加载模块 */
+  const loadComponent = (key: any) => {
+    const Component = components?.[key];
+    return Component ? <Component /> : <></>;
+  };
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <button onClick={() => setIsOpen((x) => !x)}>toggle</button>
-      {isOpen && (
-        <Suspense fallback="loading...">
-          <Thing1 />
-          <Thing2 />
-        </Suspense>
-      )}
-    </QueryClientProvider>
+    <>
+      <div className="page">
+        {Array.from({ length: 9 }).map((_, index) => (
+          <div key={index} className="item">
+            <h2>{items?.[index]?.label}</h2>
+            <div>{loadComponent(items?.[index]?.key)}</div>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 
 export default App;
-
-function Thing1() {
-  const query = useSuspenseQuery({
-    queryKey: ['thing1'],
-    queryFn: async () => {
-      console.log('start loading thing1');
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log('done loading thing1');
-      return 'Thing1';
-    },
-  });
-  return <div>{query.data}</div>;
-}
-
-function Thing2() {
-  const query = useSuspenseQuery({
-    queryKey: ['thing2'],
-    queryFn: async () => {
-      console.log('start loading thing2');
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      console.log('done loading thing2');
-      return 'Thing2';
-    },
-  });
-  return <div>{query.data}</div>;
-}

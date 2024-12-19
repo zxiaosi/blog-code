@@ -1,10 +1,8 @@
 ## 博客中示例代码
 
-### React19@rc Demo
+### Vite 实现模块联邦
 
-- [react19@rc 分支](https://github.com/zxiaosi/blog-code/tree/react19%40rc)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react19%40rc?file=src%2FApp.tsx)
+- [vite-module-federation 分支](https://github.com/zxiaosi/blog-code/tree/vite-module-federation)
 
 ### React 拖拽组件示例
 

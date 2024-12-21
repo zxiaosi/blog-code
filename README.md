@@ -1,4 +1,4 @@
-## 参考：[vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
+## 参考：[@originjs/vite-plugin-federation](https://github.com/originjs/vite-plugin-federation)
 
 ### 包版本
 

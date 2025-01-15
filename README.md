@@ -1,57 +1,26 @@
-## 博客中示例代码
+## [qiankun 多个子应用共存](https://zxiaosi.com/archives/7cff5205.html)
 
-### qiankun 多个子应用共存
+### 包版本
 
-- [qiankun-multiple-subapp 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-multiple-subapp)
+- `node: ^20.18.0`
+- `npm: ^10.8.2`
+- `lerna: ^8.1.9`
+- `vite: ^6.0.7`
 
-### Vite 实现模块联邦
+## 项目搭建
 
-- [vite-module-federation 分支](https://github.com/zxiaosi/blog-code/tree/vite-module-federation)
+### 使用 [lerna](https://www.lernajs.cn/) 创建一个 `monorepo` 项目。
 
-### React 拖拽组件示例
+- 命令行执行 `npx lerna init`, 初始化项目
 
-- [react-drag 分支](https://github.com/zxiaosi/blog-code/tree/react-drag)
+### 开启 `npm workspaces`
 
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-drag?file=src%2FApp.tsx)
+- `lerna.json` 中添加下面配置
 
-### React18 + Tinymce6 大文本功能演示
-
-- [react-tinymce-largetext 分支](https://github.com/zxiaosi/blog-code/tree/react-tinymce-largetext)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-tinymce-largetext?file=src%2FApp.tsx)
-
-### React18 + Tinymce6 常见功能演示
-
-- [react-tinymce-default 分支](https://github.com/zxiaosi/blog-code/tree/react-tinymce-default)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-tinymce-default?file=src%2FApp.tsx)
-
-### Vue3 动态路由
-
-- [vue-router 分支](https://github.com/zxiaosi/blog-code/tree/vue3-router)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/vue3-router?file=src%2Fmain.ts)
-
-### React18 动态路由
-
-- [react-router 分支](https://github.com/zxiaosi/blog-code/tree/react-router)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-router?file=src%2FApp.tsx)
-
-### React18+useSWR 封装请求
-
-- [react-useswr 分支](https://github.com/zxiaosi/blog-code/tree/react-useswr)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-useswr?file=src%2FApp.tsx)
-
-### HTML2Canvas + JsPDF 导出 PDF
-
-- [HTML2Canvas-JsPDF 分支](https://github.com/zxiaosi/blog-code/tree/HTML2Canvas-JsPDF)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/HTML2Canvas-JsPDF?file=src%2Fmain.ts)
-
-### Fortune-Sheet + ExcelJS 导出 Excel
-
-- [FortuneSheet-ExcelJS 分支](https://github.com/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS)
-
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/FortuneSheet-ExcelJS?file=src%2Fmain.ts)
+  ```bash
+  {
+  "npmClient": "npm",
+  "packages": ["packages/*"],
+  ... // 其他配置
+  }
+  ```

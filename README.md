@@ -1,5 +1,9 @@
 ## 博客中示例代码
 
+### qiankun 多个子应用共存
+
+- [qiankun-multiple-subapp 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-multiple-subapp)
+
 ### Vite 实现模块联邦
 
 - [vite-module-federation 分支](https://github.com/zxiaosi/blog-code/tree/vite-module-federation)

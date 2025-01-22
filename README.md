@@ -24,3 +24,164 @@
   ... // 其他配置
   }
   ```
+
+- 然后在根目录下创建 packages 目录 <font color='red'>（注意：名称要与上面配置的 packages/\* 目录名称一致）</font>
+
+### 配置全局格式化工具（可选）
+
+- 在 根目录下 创建 `.prettierrc` 文件
+
+  ```json
+  {
+    "plugins": [
+      "prettier-plugin-organize-imports",
+      "prettier-plugin-packagejson"
+    ],
+    "printWidth": 80,
+    "proseWrap": "never",
+    "singleQuote": true,
+    "trailingComma": "all",
+    "overrides": [
+      {
+        "files": ".prettierrc",
+        "options": {
+          "parser": "json"
+        }
+      }
+    ]
+  }
+  ```
+
+- 在 根目录 下添加 `prettier-plugin-organize-imports` 和 `prettier-plugin-packagejson` 插件
+
+  ```bash
+  npm install prettier-plugin-organize-imports prettier-plugin-packagejson -D
+  ```
+
+### 进入 `packages` 创建主应用 `app`
+
+- 依次执行下面命令
+
+  ```bash
+  # 进入 packages 目录
+  cd ./packages
+
+  # 创建主应用 app
+  npm create vite@latest
+
+  # Project name
+  app
+
+  # Select a framework
+  React
+
+  # Select a variant
+  TypeScript + SWC
+  ```
+
+- 在 `packages/app/vite.config.ts` 文件中配置端口号
+
+  ```typescript
+  export default defineConfig({
+    server: {
+      port: 8000,
+    },
+    ... // 其他配置
+  });
+  ```
+
+### 进入 `packages` 创建子应用 `app1`
+
+- 依次执行下面命令
+
+  ```bash
+  # 进入 packages 目录
+  cd ./packages
+
+  # 创建子应用 app1
+  npm create vite@latest
+
+  # Project name
+  app1
+
+  # Select a framework
+  React
+
+  # Select a variant
+  TypeScript + SWC
+  ```
+
+- 在 `packages/app1/vite.config.ts` 文件中配置端口号
+
+  ```typescript
+  export default defineConfig({
+    server: {
+      port: 8001,
+    },
+    ... // 其他配置
+  });
+  ```
+
+### 进入 `packages` 创建子应用 `app2`
+
+- 依次执行下面命令
+
+  ```bash
+  # 进入 packages 目录
+  cd ./packages
+
+  # 创建子应用 app2
+  npm create vite@latest
+
+  # Project name
+  app2
+
+  # Select a framework
+  React
+
+  # Select a variant
+  TypeScript + SWC
+  ```
+
+- 在 `packages/app2/vite.config.ts` 文件中配置端口号
+
+  ```typescript
+  export default defineConfig({
+    server: {
+      port: 8002,
+    },
+    ... // 其他配置
+  });
+  ```
+
+### 进入 `packages` 创建子应用 `app3`
+
+- 依次执行下面命令
+
+  ```bash
+  # 进入 packages 目录
+  cd ./packages
+
+  # 创建子应用 app3
+  npm create vite@latest
+
+  # Project name
+  app3
+
+  # Select a framework
+  React
+
+  # Select a variant
+  TypeScript + SWC
+  ```
+
+- 在 `packages/app3/vite.config.ts` 文件中配置端口号
+
+  ```typescript
+  export default defineConfig({
+    server: {
+      port: 8003,
+    },
+    ... // 其他配置
+  });
+  ```

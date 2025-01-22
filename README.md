@@ -185,3 +185,17 @@
     ... // 其他配置
   });
   ```
+
+### 全局安装公用包
+
+- 在 根目录 下安装 [react-router](https://reactrouter.com/)
+
+  ```bash
+  npm install react-router
+  ```
+
+- 在 根目录 下安装 [antd](https://ant.design/index-cn)
+
+  ```bash
+  npm install antd
+  ```

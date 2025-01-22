@@ -8,5 +8,9 @@
     "lerna": "^8.1.9",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-packagejson": "^2.5.8"
+  },
+  "dependencies": {
+    "antd": "^5.23.2",
+    "react-router": "^7.1.3"
   }
 }

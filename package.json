@@ -1,6 +1,13 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "app": "npm run dev -w=app",
+    "app1": "npm run dev -w=app1",
+    "app2": "npm run dev -w=app2",
+    "app3": "npm run dev -w=app3",
+    "clean": "lerna clean & rimraf ./node_modules"
+  },
   "workspaces": [
     "packages/*"
   ],

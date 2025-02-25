@@ -5,13 +5,14 @@
     "app": "npm run dev -w=app",
     "app1": "npm run dev -w=app1",
     "app2": "npm run dev -w=app2",
-    "app3": "npm run dev -w=app3",
     "clean": "lerna clean & rimraf ./node_modules"
   },
   "workspaces": [
     "packages/*"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "react-router-dom": "^6.28.0"
+  },
   "devDependencies": {
     "lerna": "^8.1.8"
   }

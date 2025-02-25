@@ -28,5 +28,5 @@ const qiankun = () => {
 // 检查是否在 Qiankun 环境中
 console.log('qiankunWindow', qiankunWindow.__POWERED_BY_QIANKUN__);
 
-if (qiankunWindow.__POWERED_BY_QIANKUN__) qiankun();
+if (qiankunWindow.__POWERED_BY_QIANKUN__) qiankun(); // 以子应用的方式启动
 else render();

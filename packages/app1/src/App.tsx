@@ -5,10 +5,10 @@ const routes = createBrowserRouter(
   [
     {
       path: '/',
-      element: <h1>app1</h1>,
+      element: <h2>app1</h2>,
     },
   ],
-  { basename: '/app1' }
+  { basename: '/app1' } // 设置路由前缀
 );
 
 function App() {

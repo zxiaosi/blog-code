@@ -7,16 +7,16 @@ import { registerMicroApps, start } from 'qiankun';
 registerMicroApps(
   [
     {
-      name: 'app1',
-      entry: 'http://localhost:8001',
-      container: '#subapp1',
-      activeRule: '/app1',
+      name: 'app1', // 子应用名称(全局唯一)
+      entry: 'http://localhost:8001', // 这里的端口号要和子应用的端口号一致
+      container: '#subapp1', // 子应用挂载点
+      activeRule: '/app1', // 这里的路径要和子应用的路由路径一致
     },
     {
-      name: 'app2',
-      entry: 'http://localhost:8002',
-      container: '#subapp2',
-      activeRule: '/app2',
+      name: 'app2', // 子应用名称(全局唯一)
+      entry: 'http://localhost:8002', // 这里的端口号要和子应用的端口号一致
+      container: '#subapp2', // 子应用挂载点
+      activeRule: '/app2', // 这里的路径要和子应用的路由路径一致
     },
   ],
   {

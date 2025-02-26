@@ -1,5 +1,9 @@
 ## 博客中示例代码
 
+### qiankun + Vite 样式隔离解决方案
+
+- [qiankun-vite-style 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-vite-style)
+
 ### qiankun 多个子应用共存
 
 - [qiankun-multiple-subapp 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-multiple-subapp)

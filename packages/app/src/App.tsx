@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import {
   createBrowserRouter,
   Outlet,
@@ -38,7 +39,14 @@ const routes = createBrowserRouter(
       children: [
         {
           path: '/',
-          element: <h2>app</h2>,
+          element: (
+            <>
+              {/* 测试样式 */}
+              <h2>app</h2>
+              <div className="test">测试样式隔离</div>
+              <Button>测试组件库样式</Button>
+            </>
+          ),
         },
         {
           path: 'app1/*', // 通配符 * 表示匹配所有子路由

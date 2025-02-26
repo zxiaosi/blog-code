@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import qiankun from 'vite-plugin-qiankun';
+import prefixer from 'postcss-prefix-selector';
 
 // https://vite.dev/config/
 export default ({ mode }) => {
@@ -25,5 +26,33 @@ export default ({ mode }) => {
       ...[useDevMode ? [] : [react()]],
       qiankun(subAppName, { useDevMode }),
     ],
+    css: {
+      postcss: {
+        plugins: [
+          prefixer({
+            prefix: `[data-qiankun-${subAppName}]`, // 这里的值要和 main.tsx 中的属性名保持一致
+            transform(prefix, selector, prefixedSelector, filePath, rule) {
+              if (selector.match(/^(html|body)/)) {
+                return selector.replace(/^([^\s]*)/, `$1 ${prefix}`);
+              }
+
+              if (filePath.match(/node_modules/)) {
+                return selector; // Do not prefix styles imported from node_modules
+              }
+
+              const annotation = rule.prev();
+              if (
+                annotation?.type === 'comment' &&
+                annotation.text.trim() === 'no-prefix'
+              ) {
+                return selector; // Do not prefix style rules that are preceded by: /* no-prefix */
+              }
+
+              return prefixedSelector;
+            },
+          }),
+        ],
+      },
+    },
   });
 };

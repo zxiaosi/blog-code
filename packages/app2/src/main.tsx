@@ -10,6 +10,13 @@ import './index.css';
 /** 渲染函数 */
 const render = (container?: HTMLElement) => {
   const app = container || (document.getElementById('root') as HTMLDivElement);
+
+  /**
+   * 添加属性，用于样式隔离
+   * 注意：这里的属性名要和 postcss-prefix-selector 插件中的 prefix 保持一致
+   */
+  app.setAttribute('data-qiankun-app2', 'true');
+
   createRoot(app).render(<App />);
 };
 

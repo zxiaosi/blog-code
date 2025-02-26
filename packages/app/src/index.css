@@ -16,3 +16,13 @@
   margin-top: 40px;
   border: 2px solid #000;
 }
+
+/* 测试样式 */
+
+.test {
+  color: red;
+}
+
+.ant-btn {
+  height: 60px;
+}

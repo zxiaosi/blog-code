@@ -9,7 +9,7 @@ const routes = createBrowserRouter(
       element: (
         <>
           {/* 测试样式 */}
-          <h2>app2</h2>
+          <h2>app1</h2>
           <div className="test">测试样式隔离</div>
           <Button>测试组件库样式</Button>
         </>

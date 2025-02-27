@@ -8,7 +8,7 @@
     "preinstall": "npx only-allow pnpm",
     "remote": "pnpm -F remote build && pnpm -F remote run preview",
     "host": "pnpm -F host dev",
-    "clean": "pnpm -r exec rm -rf node_modules && rimraf ./node_modules"
+    "clean": "pnpm -r exec rimraf node_modules && rimraf ./node_modules"
   },
   "dependencies": {},
   "devDependencies": {}

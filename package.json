@@ -8,11 +8,8 @@
     "preinstall": "npx only-allow pnpm",
     "remote": "pnpm -F remote build && pnpm -F remote run preview",
     "host": "pnpm -F host dev",
-    "bootstrap": "lerna bootstrap",
-    "clean": "lerna clean && rimraf ./node_modules"
+    "clean": "pnpm -r exec rm -rf node_modules && rimraf ./node_modules"
   },
   "dependencies": {},
-  "devDependencies": {
-    "lerna": "^8.1.9"
-  }
+  "devDependencies": {}
 }

@@ -4,9 +4,11 @@
 
 - [react-compiler 分支](https://github.com/zxiaosi/blog-code/tree/react-compiler)
 
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-normal?file=src%2FApp.tsx)
+- `React Normal 示例` [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-normal?file=src%2FApp.tsx)
 
-- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-compiler?file=src%2FApp.tsx)
+- `React Memo 示例` [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-memo?file=src%2FApp.tsx)
+
+- `React Compiler 示例` [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-compiler?file=src%2FApp.tsx)
 
 ### Qiankun + Vite 样式隔离解决方案
 

@@ -1,10 +1,18 @@
 ## 博客中示例代码
 
-### qiankun + Vite 样式隔离解决方案
+### React Compiler 自动优化编译器
+
+- [react-compiler 分支](https://github.com/zxiaosi/blog-code/tree/react-compiler)
+
+- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-normal?file=src%2FApp.tsx)
+
+- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/react-compiler/react-compiler?file=src%2FApp.tsx)
+
+### Qiankun + Vite 样式隔离解决方案
 
 - [qiankun-vite-style 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-vite-style)
 
-### qiankun 多个子应用共存
+### Qiankun 多个子应用共存
 
 - [qiankun-multiple-subapp 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-multiple-subapp)
 

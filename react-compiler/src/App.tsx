@@ -1,10 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import reactLogo from './assets/react.svg';
+import viteLogo from '/vite.svg';
+import './App.css';
+
+/** 编译器会自动优化 */
+const TestMemo = () => {
+  console.log('TestMemo');
+  return <p>TestMemo</p>;
+};
+
+/** 编译器会自动优化 */
+const TestMemoCallback = ({ onClick }: any) => {
+  console.log('TestMemoCallback', onClick);
+  return <button onClick={onClick}>TestMemoCallback</button>;
+};
+
+/** 编译器会自动优化 */
+const TestMemoUseMemo = ({ arr }: any) => {
+  console.log('TestMemoUseMemo');
+  return <p>{arr}</p>;
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+
+  // 编译器自动优化
+  const handleClick = () => {};
+
+  // 编译器自动优化
+  const arr = [1, 2, 3];
 
   return (
     <>
@@ -21,15 +45,13 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <TestMemo />
+      <TestMemoCallback onClick={handleClick} />
+      <TestMemoUseMemo arr={arr} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,20 +1,20 @@
 import {
   Background,
   BackgroundVariant,
+  Edge,
+  Node,
   OnSelectionChangeParams,
   Panel,
   ReactFlow,
-  useKeyPress,
-  Node,
-  Edge,
-  useReactFlow,
   ReactFlowProvider,
+  useReactFlow,
 } from '@xyflow/react';
-import './index.css';
-import '@xyflow/react/dist/style.css'; // 引入样式
+import { cloneDeep } from 'lodash';
 import { useCallback, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { cloneDeep } from 'lodash';
+
+import '@xyflow/react/dist/style.css'; // 引入样式
+import './index.css';
 
 /** 粘贴时偏移量 */
 export const OFFSET = 50;
@@ -56,7 +56,7 @@ const CustomCopyPaste = () => {
     (nodeEdgeObj: OnSelectionChangeParams) => {
       setSelected?.(nodeEdgeObj);
     },
-    []
+    [],
   );
 
   /** 粘贴事件 */
@@ -72,10 +72,13 @@ const CustomCopyPaste = () => {
     const newSelectedNodes = allNodes.filter((_) => selectedNodeIds.has(_.id));
 
     // 创建旧节点ID到新节点ID的映射
-    const nodeIdMap = selectedNodes?.reduce((acc, node) => {
-      acc[node.id] = uuidv4();
-      return acc;
-    }, {} as Record<string, string>);
+    const nodeIdMap = selectedNodes?.reduce(
+      (acc, node) => {
+        acc[node.id] = uuidv4();
+        return acc;
+      },
+      {} as Record<string, string>,
+    );
 
     // 生成新节点
     const newNodes = cloneDeep(newSelectedNodes)?.map((node) => ({
@@ -109,7 +112,7 @@ const CustomCopyPaste = () => {
       ...prevNodes.map((node) =>
         newSelectedNodes?.some((n) => n.id === node.id)
           ? { ...node, selected: false }
-          : node
+          : node,
       ),
       ...newNodes,
     ]);
@@ -118,7 +121,7 @@ const CustomCopyPaste = () => {
       ...prevEdges.map((edge) =>
         selectedEdges?.some((e) => e.id === edge.id)
           ? { ...edge, selected: false }
-          : edge
+          : edge,
       ),
       ...newEdges,
     ]);
@@ -131,7 +134,7 @@ const CustomCopyPaste = () => {
         handlePaste();
       }
     },
-    [handlePaste]
+    [handlePaste],
   );
 
   return (
@@ -144,7 +147,8 @@ const CustomCopyPaste = () => {
       // selectionKeyCode={'Shift'} // 选中一片
       // multiSelectionKeyCode={['Control', 'Meta']} // 多选
       // deleteKeyCode={'Backspace'} // 删除选中节点
-      proOptions={{ hideAttribution: true }}>
+      proOptions={{ hideAttribution: true }}
+    >
       {/* 背景 */}
       <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
 
@@ -158,7 +162,8 @@ const CustomCopyPaste = () => {
             className={`btn ${
               selected?.nodes.length === 0 ? 'btn-disabled' : ''
             }`}
-            onClick={handlePaste}>
+            onClick={handlePaste}
+          >
             粘贴
           </div>
         </div>

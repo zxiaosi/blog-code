@@ -20,7 +20,10 @@ function App() {
     <>
       <div className="btn-group">
         {buttonItems.map((item) => (
-          <div key={item.key} onClick={() => handleClick(item.key)}>
+          <div
+            key={item.key}
+            onClick={() => handleClick(item.key)}
+            className="btn">
             {item.key}
           </div>
         ))}

@@ -18,7 +18,7 @@ body {
   justify-content: center;
 }
 
-.btn-group > div {
+.btn {
   height: 32px;
   line-height: 32px;
   padding: 0 15px;
@@ -27,16 +27,24 @@ body {
   box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
   font-size: 14px;
   border-radius: 6px;
+  text-align: center;
   cursor: pointer;
   user-select: none;
 }
 
-.btn-group > div:hover {
+.btn:hover {
   background: #4096ff;
 }
 
-.btn-group > div:active {
+.btn:active {
   background: #0958d9;
+}
+
+.btn-disabled,
+.btn-disabled:hover,
+.btn-disabled:active {
+  cursor: not-allowed;
+  background: #d9d9d9;
 }
 
 .content {

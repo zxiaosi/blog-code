@@ -4,3 +4,42 @@ body {
   padding: 0;
   margin: 0;
 }
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+.btn-group {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-group > div {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 15px;
+  background: #1677ff;
+  color: #ffffff;
+  box-shadow: 0 2px 0 rgba(5, 145, 255, 0.1);
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn-group > div:hover {
+  background: #4096ff;
+}
+
+.btn-group > div:active {
+  background: #0958d9;
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 100px);
+}

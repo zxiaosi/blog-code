@@ -17,7 +17,7 @@ import '@xyflow/react/dist/style.css'; // 引入样式
 import './index.css';
 
 /** 粘贴时偏移量 */
-export const OFFSET = 50;
+const OFFSET = 50;
 
 /** 默认节点 */
 const defaultNodes = [

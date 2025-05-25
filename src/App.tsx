@@ -1,15 +1,19 @@
 import { useState } from 'react';
-import { CustomCopyPaste } from './components';
+import { CustomCopyPaste, CustomEdgeAnimation } from './components';
 
 const buttonItems = [
   {
     key: 'CopyPaste',
     component: <CustomCopyPaste />,
   },
+  {
+    key: 'EdgeAnimation',
+    component: <CustomEdgeAnimation />,
+  },
 ];
 
 function App() {
-  const [btn, setBtn] = useState(buttonItems[0].key);
+  const [btn, setBtn] = useState(buttonItems[1].key);
 
   /** 点击事件 */
   const handleClick = (key: string) => {
@@ -23,7 +27,8 @@ function App() {
           <div
             key={item.key}
             onClick={() => handleClick(item.key)}
-            className="btn">
+            className="btn"
+          >
             {item.key}
           </div>
         ))}

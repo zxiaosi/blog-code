@@ -12,10 +12,10 @@ import {
   ReactFlowProvider,
 } from '@xyflow/react';
 import { memo } from 'react';
-
-import '@xyflow/react/dist/style.css'; // 引入样式
 import { useShallow } from 'zustand/shallow';
 import useEdgeType, { EdgeType } from '../../hooks/useEdgeType';
+
+import '@xyflow/react/dist/style.css'; // 引入样式
 import './index.css';
 
 /** 是否反转动画 */

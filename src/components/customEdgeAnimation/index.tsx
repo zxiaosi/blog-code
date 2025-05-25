@@ -144,6 +144,9 @@ const CustomEdge = memo((props: EdgeProps) => {
   );
 });
 
+/** 注入连接线 */
+const edgeTypes = { customEdge: CustomEdge };
+
 /** 自定义连接线动画组件 */
 const CustomEdgeAnimation = () => {
   const { onChangeEdgeType } = useEdgeType(
@@ -157,7 +160,7 @@ const CustomEdgeAnimation = () => {
       fitView
       defaultNodes={defaultNodes}
       defaultEdges={defaultEdges}
-      edgeTypes={{ customEdge: CustomEdge }}
+      edgeTypes={edgeTypes}
       proOptions={{ hideAttribution: true }}
     >
       {/* 背景 */}

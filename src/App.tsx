@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { CustomCopyPaste, CustomEdgeAnimation } from './components';
+import {
+  CustomCopyPaste,
+  CustomEdgeAnimation,
+  CustomEditableEdge,
+} from './components';
 
 const buttonItems = [
   {
@@ -10,10 +14,14 @@ const buttonItems = [
     key: 'EdgeAnimation',
     component: <CustomEdgeAnimation />,
   },
+  {
+    key: 'EditableEdge',
+    component: <CustomEditableEdge />,
+  },
 ];
 
 function App() {
-  const [btn, setBtn] = useState(buttonItems[1].key);
+  const [btn, setBtn] = useState(buttonItems[2].key);
 
   /** 点击事件 */
   const handleClick = (key: string) => {

@@ -26,7 +26,7 @@ const buttonItems = [
 ];
 
 function App() {
-  const [btn, setBtn] = useState(buttonItems[3].key);
+  const [btn, setBtn] = useState(buttonItems[0].key);
 
   /** 点击事件 */
   const handleClick = (key: string) => {

@@ -9,10 +9,10 @@ import {
   ReactFlowProvider,
   useReactFlow,
 } from '@xyflow/react';
+import { isEmpty } from 'lodash';
 import { memo, useEffect, useRef } from 'react';
 
 import '@xyflow/react/dist/style.css'; // 引入样式
-import { isEmpty } from 'lodash';
 import './index.css';
 
 /** 顶点坐标 */

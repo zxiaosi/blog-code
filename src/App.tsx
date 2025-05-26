@@ -3,6 +3,7 @@ import {
   CustomCopyPaste,
   CustomEdgeAnimation,
   CustomEditableEdge,
+  CustomSelectGroup,
 } from './components';
 
 const buttonItems = [
@@ -18,10 +19,14 @@ const buttonItems = [
     key: 'EditableEdge',
     component: <CustomEditableEdge />,
   },
+  {
+    key: 'SelectGroup',
+    component: <CustomSelectGroup />,
+  },
 ];
 
 function App() {
-  const [btn, setBtn] = useState(buttonItems[2].key);
+  const [btn, setBtn] = useState(buttonItems[3].key);
 
   /** 点击事件 */
   const handleClick = (key: string) => {

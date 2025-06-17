@@ -1,0 +1,19 @@
+{
+  "name": "frontend",
+  "private": true,
+  "scripts": {
+    "build:app": "pnpm -F app run build",
+    "build:app1": "pnpm -F app1 run build",
+    "clean": "pnpm -r exec rimraf ./node_modules && npx rimraf ./node_modules",
+    "dev:app": "pnpm -F app run dev",
+    "dev:app1": "pnpm -F app1 run dev",
+    "preview:app": "pnpm -F app run preview",
+    "preview:app1": "pnpm -F app1 run preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^3.5.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier-plugin-packagejson": "^2.5.15"
+  }
+}

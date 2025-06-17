@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig, loadEnv } from 'vite';
+import { viteExternalsPlugin } from 'vite-plugin-externals';
 
 // https://vite.dev/config/
 export default ({ mode }) => {
@@ -21,16 +22,16 @@ export default ({ mode }) => {
     },
     plugins: [
       react(),
-      // /**
-      //  * 排除 react react-dom, 使用 cdn 加载
-      //  * - https://github.com/umijs/qiankun/issues/581
-      //  * - https://github.com/umijs/qiankun/issues/627
-      //  */
-      // viteExternalsPlugin({
-      //   react: 'React',
-      //   'react-dom': 'ReactDOM',
-      //   'react-dom/client': 'ReactDOM',
-      // }),
+      /**
+       * 排除 react react-dom, 使用 cdn/本地文件 加载
+       * - https://github.com/umijs/qiankun/issues/581
+       * - https://github.com/umijs/qiankun/issues/627
+       */
+      viteExternalsPlugin({
+        react: 'React',
+        'react-dom': 'ReactDOM',
+        'react-dom/client': 'ReactDOM',
+      }),
     ],
   });
 };

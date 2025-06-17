@@ -5,6 +5,10 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
+
+    <!-- 注意 ignore 一定要加, 否则子应用也会加载文件 -->
+    <script ignore src="%VITE_REACT_FILE_PATH%"></script>
+    <script ignore src="%VITE_REACT_DOM_FILE_PATH%"></script>
   </head>
   <body>
     <div id="root"></div>

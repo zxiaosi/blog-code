@@ -13,12 +13,9 @@ export default ({ mode }) => {
   const env = loadEnv(mode, envDir);
 
   return defineConfig({
-    // base: base,
     publicDir: publicDir,
     server: {
       port: Number(env.VITE_PORT),
-      cors: true,
-      origin: '*',
     },
     preview: {
       port: Number(env.VITE_PORT),

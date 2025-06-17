@@ -1,5 +1,9 @@
 ## 博客中示例代码
 
+### Qiankun 打包优化
+
+- [qiankun-build 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-build)
+
 ### React Flow 拓扑图
 
 - [react-flow 分支](https://github.com/zxiaosi/blog-code/tree/react-flow)

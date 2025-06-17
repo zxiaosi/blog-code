@@ -1,7 +1,41 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
+import { defineConfig, loadEnv } from 'vite';
+import qiankun from 'vite-plugin-qiankun-lite';
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-})
+export default ({ mode }) => {
+  // 环境变量文件夹
+  const envDir = resolve(__dirname, './');
+  // 静态资源服务的文件夹
+  const publicDir = resolve(__dirname, '../../libs');
+  // 加载环境变量
+  const env = loadEnv(mode, envDir);
+
+  return defineConfig({
+    // base: base,
+    publicDir: publicDir,
+    server: {
+      port: Number(env.VITE_PORT),
+      cors: true,
+      origin: '*',
+    },
+    preview: {
+      port: Number(env.VITE_PORT),
+    },
+    plugins: [
+      react(),
+      qiankun({ name: env.VITE_APP_NAME, sandbox: true }),
+      // /**
+      //  * 排除 react react-dom, 使用 cdn 加载
+      //  * - https://github.com/umijs/qiankun/issues/581
+      //  * - https://github.com/umijs/qiankun/issues/627
+      //  */
+      // viteExternalsPlugin({
+      //   react: 'React',
+      //   'react-dom': 'ReactDOM',
+      //   'react-dom/client': 'ReactDOM',
+      // }),
+    ],
+  });
+};

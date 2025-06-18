@@ -19,6 +19,9 @@ registerMicroApps(
       entry: 'http://localhost:8001',
       container: '#sub-app',
       activeRule: '/app1',
+      props: {
+        appName: 'app1',
+      },
       loader,
     },
   ],

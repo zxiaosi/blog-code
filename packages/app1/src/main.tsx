@@ -25,7 +25,7 @@ export async function bootstrap() {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export async function mount(props: any) {
   console.log(`${name} mount`, props);
-  render({ ...props, appName: import.meta.env.VITE_APP_NAME });
+  render(props);
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>

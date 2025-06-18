@@ -41,7 +41,7 @@ function App({ loading }: any) {
     ],
     {
       basename: '/',
-    }
+    },
   );
 
   return <RouterProvider router={router} />;

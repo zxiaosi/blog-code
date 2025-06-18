@@ -10,7 +10,7 @@ function App({ appName = '' }) {
     ],
     {
       basename: `/${appName}`,
-    }
+    },
   );
 
   return <RouterProvider router={router} />;

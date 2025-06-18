@@ -41,11 +41,11 @@ registerMicroApps(
         console.log(
           '[LifeCycle] after unmount %c%s',
           'color: green;',
-          app.name
+          app.name,
         );
       },
     ],
-  }
+  },
 );
 
 start();

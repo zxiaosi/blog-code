@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "blog-code",
   "private": true,
   "scripts": {
     "build:app": "pnpm -F app run build",

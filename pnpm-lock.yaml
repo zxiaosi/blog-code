@@ -69,6 +69,9 @@ importers:
       vite:
         specifier: 5.4.11
         version: 5.4.11(@types/node@24.0.3)
+      vite-bundle-analyzer:
+        specifier: ^0.22.3
+        version: 0.22.3
       vite-plugin-externals:
         specifier: ^0.6.2
         version: 0.6.2(vite@5.4.11(@types/node@24.0.3))
@@ -124,6 +127,9 @@ importers:
       vite:
         specifier: 5.4.11
         version: 5.4.11(@types/node@24.0.3)
+      vite-bundle-analyzer:
+        specifier: ^0.22.3
+        version: 0.22.3
       vite-plugin-externals:
         specifier: ^0.6.2
         version: 0.6.2(vite@5.4.11(@types/node@24.0.3))
@@ -792,8 +798,8 @@ packages:
   domutils@3.2.2:
     resolution: {integrity: sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw==}
 
-  electron-to-chromium@1.5.168:
-    resolution: {integrity: sha512-RUNQmFLNIWVW6+z32EJQ5+qx8ci6RGvdtDC0Ls+F89wz6I2AthpXF0w0DIrn2jpLX0/PU9ZCo+Qp7bg/EckJmA==}
+  electron-to-chromium@1.5.170:
+    resolution: {integrity: sha512-GP+M7aeluQo9uAyiTCxgIj/j+PrWhMlY7LFVj8prlsPljd0Fdg9AprlfUi+OCSFWy9Y5/2D/Jrj9HS8Z4rpKWA==}
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -1309,6 +1315,10 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  vite-bundle-analyzer@0.22.3:
+    resolution: {integrity: sha512-Ce8V+IZbACAHkEIG2GVu7fwKwtKtwfqSJKXQedYWHOadf9CY8s0MGddJIWu++8ZvuC8NJPH74geDsAS6HJvsRw==}
+    hasBin: true
 
   vite-plugin-externals@0.6.2:
     resolution: {integrity: sha512-R5oVY8xDJjLXLTs2XDYzvYbc/RTZuIwOx2xcFbYf+/VXB6eJuatDgt8jzQ7kZ+IrgwQhe6tU8U2fTyy72C25CQ==}
@@ -1897,7 +1907,7 @@ snapshots:
   browserslist@4.25.0:
     dependencies:
       caniuse-lite: 1.0.30001723
-      electron-to-chromium: 1.5.168
+      electron-to-chromium: 1.5.170
       node-releases: 2.0.19
       update-browserslist-db: 1.1.3(browserslist@4.25.0)
 
@@ -1987,7 +1997,7 @@ snapshots:
       domelementtype: 2.3.0
       domhandler: 5.0.3
 
-  electron-to-chromium@1.5.168: {}
+  electron-to-chromium@1.5.170: {}
 
   entities@4.5.0: {}
 
@@ -2500,6 +2510,8 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  vite-bundle-analyzer@0.22.3: {}
 
   vite-plugin-externals@0.6.2(vite@5.4.11(@types/node@24.0.3)):
     dependencies:

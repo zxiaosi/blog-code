@@ -32,6 +32,7 @@ export default ({ mode }) => {
         'react-dom': 'ReactDOM',
         'react-dom/client': 'ReactDOM',
       }),
+      // analyzer(),
     ],
   });
 };

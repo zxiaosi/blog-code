@@ -9,13 +9,10 @@ import { name } from './package.json';
 export default ({ mode }) => {
   // 环境变量文件夹
   const envDir = resolve(__dirname, './');
-  // 静态资源服务的文件夹
-  const publicDir = resolve(__dirname, '../../libs');
   // 加载环境变量
   const env = loadEnv(mode, envDir);
 
   return defineConfig({
-    publicDir: publicDir,
     server: {
       port: Number(env.VITE_PORT),
     },

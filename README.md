@@ -1,5 +1,11 @@
 ## 博客中示例代码
 
+### Vite 模板语法
+
+- [vite-template 分支](https://github.com/zxiaosi/blog-code/tree/vite-template)
+
+- [![在 StackBlitz 中打开](https://developer.stackblitz.com/img/open_in_stackblitz_small.svg)](https://stackblitz.com/github/zxiaosi/blog-code/tree/vite-template?file=src%2FApp.tsx)
+
 ### Qiankun 打包优化
 
 - [qiankun-build 分支](https://github.com/zxiaosi/blog-code/tree/qiankun-build)

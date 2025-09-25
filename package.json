@@ -4,20 +4,27 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
+    "dev": "npm run dev:A",
+    "dev:A": "cross-env platform=A vite",
+    "dev:B": "cross-env platform=B vite",
+    "build": "npm run build:A",
+    "build:A": "npx rimraf dist && cross-env platform=A vite build",
+    "build:B": "npx rimraf dist && cross-env platform=B vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
+    "blueimp-tmpl": "^3.20.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@types/node": "^24.5.2",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
+    "cross-env": "^10.0.0",
     "eslint": "^9.13.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",

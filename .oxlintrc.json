@@ -1,0 +1,6 @@
+{
+  "rules": {},
+  "files": ["**/*.{ts,tsx}"],
+  "plugins": ["react", "unicorn", "typescript", "oxc"],
+  "ignorePatterns": ["**/node_modules/**"]
+}

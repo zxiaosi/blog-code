@@ -44,8 +44,8 @@ webSee.init({
     // return { ...data };
   },
 });
-webSee.use(performance, {}); // 性能监控插件
-webSee.use(recordscreen, {}); // 录屏插件
+// webSee.use(performance, {}); // 性能监控插件
+// webSee.use(recordscreen, {}); // 录屏插件
 
 /**
  * 在 window 定义 monitor 变量

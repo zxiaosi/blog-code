@@ -30,7 +30,7 @@ const BaseLayout = () => {
   const [selectedKey, setSelectedKey] = useState<string[]>([]);
 
   /** 模拟用户登录 - 类型定义在 vite-env.d.ts */
-  window.sdk = { useId: 'Admin' };
+  window.sdk = { userId: 'Admin' };
 
   /** 菜单点击事件 */
   const handleMenuClick: MenuProps['onClick'] = (e) => {

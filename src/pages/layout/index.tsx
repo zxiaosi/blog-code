@@ -26,11 +26,11 @@ const BaseLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [selectedKey, setSelectedKey] = useState<string[]>([]);
 
   /** 模拟用户登录 - 类型定义在 vite-env.d.ts */
-  window.sdk.userId = 'Admin';
+  window.sdk = { useId: 'Admin' };
 
   /** 菜单点击事件 */
   const handleMenuClick: MenuProps['onClick'] = (e) => {

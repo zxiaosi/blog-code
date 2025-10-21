@@ -10,20 +10,12 @@ import recordscreen from '@websee/recordscreen';
  * - 安装 idb-keyval 相关包: npm install idb-keyval
  */
 webSee.init({
-  dsn: '/api/monitor',
-  apikey: 'Demo',
-  userId: window.sdk.userId || '-',
-  disabled: false, // 是否禁用sdk
+  dsn: '/api/monitor', // 上报接口地址
+  apikey: 'Demo', // 项目标识
+  userId: window?.sdk?.userId || '-', // 用户标识
   silentWhiteScreen: false, // 白屏检测
   skeletonProject: false, // 骨架屏检测
-  whiteBoxElements: ['html', 'body', '#app', '#root'], // 白屏检测的容器列表
-  filterXhrUrlRegExp: undefined, // 默认为空，所有的接口请求都会被监听
-  useImgUpload: false, // 是否使用图片打点上报的方式
-  throttleDelayTime: 0, // 设置全局 click 点击事件的节流时间
-  overTime: 10, // 设置接口超时时长，默认 10s
-  maxBreadcrumbs: 20, // 用户行为存放的最大容量，超过 20 条，最早的一条记录会被覆盖掉
   repeatCodeError: true, // 是否开启去除重复的代码报错，开启的话重复的代码错误只上报一次
-  // beforePushBreadcrumb () {},
   handleHttpStatus(data) {
     let { url, response } = data;
     // code为200，接口正常，反之亦然
@@ -34,7 +26,8 @@ webSee.init({
       return true;
     }
   },
-  async beforeDataReport(data) {
+  // @ts-ignore
+  beforeDataReport(data) {
     console.log('beforeDataReport', data);
 
     return false; // 返回 false, 不上报

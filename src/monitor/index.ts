@@ -1,3 +1,4 @@
+import { useLogData } from '@/hooks';
 import webSee from '@websee/core';
 import performance from '@websee/performance';
 import recordscreen from '@websee/recordscreen';
@@ -32,7 +33,9 @@ webSee.init({
     console.log('beforeDataReport', data);
 
     writeDataUtil(data)
-      .then(() => {})
+      .then(() => {
+        useLogData.getState().getData();
+      })
       .catch((e) => {
         console.log('beforeDataReport error', e);
       });

@@ -1,4 +1,4 @@
-import { createStore } from 'idb-keyval';
+import { clear, createStore, delMany, set, values } from 'idb-keyval';
 
 export interface LogData {
   content: any;
@@ -22,11 +22,26 @@ export const EXPIRED_THRESHOLD = 1000 * 60 * 60 * 24 * 7; // 7天
 /** 最大容量 */
 export const MAX_SIZE = 1024 * 1024 * 20; // 20MB 最大容量
 
-/** 获取数据的大小 */
-export const getSizeUtil = (data: any) => {
-  const newData = typeof data === 'string' ? JSON.parse(data) : data;
-  return new Blob([newData]).size || 0;
+/** 导出数据 */
+export const exportDataUtil = async () => {
+  // 获取所有数据
+  const data = (await values(CUSTOM_STORAGE)) || [];
+
+  // 下载数据
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'log.json';
+  a.click();
+  URL.revokeObjectURL(url);
 };
+
+/** 清除数据 */
+export const clearDataUtil = async () => {
+  await clear(CUSTOM_STORAGE);
+};
+
 /**
  * 检查过期数据
  * @param allData 所有数据
@@ -67,4 +82,35 @@ export const checkCapacityUtil = (allData: LogData[], newItem: LogData) => {
   }
 
   return { exceed, unExceed, sum };
+};
+
+/**
+ * 写入数据
+ * @param data 数据
+ */
+export const writeDataUtil = async (data: any) => {
+  // 1. 获取当前时间戳
+  const currentDate = Date.now();
+
+  // 2. 生成新数据
+  const newData = typeof data === 'string' ? data : JSON.stringify(data);
+  const logData: LogData = {
+    content: newData,
+    size: new Blob([newData]).size || 0,
+    createTime: currentDate,
+    expiredTime: currentDate + EXPIRED_THRESHOLD, // 7天过期
+  };
+
+  // 3. 获取所有数据
+  const allData: LogData[] = (await values(CUSTOM_STORAGE)) || [];
+
+  // 4. 检查过期和超出容量的数据
+  const { expired, unExpired } = checkExpiredDataUtil(allData, currentDate);
+  const { exceed, unExceed, sum } = checkCapacityUtil(unExpired, logData);
+  const deletedArr = [...expired, ...exceed]; // 待删除数据
+  const ids = deletedArr.map((item) => item.createTime + '');
+  await delMany(ids, CUSTOM_STORAGE);
+
+  // 5. 存储新数据
+  await set(currentDate + '', logData, CUSTOM_STORAGE);
 };

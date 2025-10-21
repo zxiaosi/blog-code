@@ -1,6 +1,7 @@
 import webSee from '@websee/core';
 import performance from '@websee/performance';
 import recordscreen from '@websee/recordscreen';
+import { clearDataUtil, exportDataUtil, writeDataUtil } from './utils';
 
 /**
  * 监控sdk
@@ -30,6 +31,12 @@ webSee.init({
   beforeDataReport(data) {
     console.log('beforeDataReport', data);
 
+    writeDataUtil(data)
+      .then(() => {})
+      .catch((e) => {
+        console.log('beforeDataReport error', e);
+      });
+
     return false; // 返回 false, 不上报
     // return { ...data };
   },
@@ -43,10 +50,10 @@ webSee.use(recordscreen, {}); // 录屏插件
  * - 通过 await window.monitor.clear() 清空数据
  */
 if (!window.monitor) {
-  Object.defineProperty(window, '', {
+  Object.defineProperty(window, 'monitor', {
     value: {
-      download: 'demo',
-      clear: 'demo',
+      download: exportDataUtil,
+      clear: clearDataUtil,
     },
     writable: false, // 不允许修改
     configurable: false, // 不允许删除

@@ -10,6 +10,8 @@ import { Button, message, Modal, Space, Table, Timeline } from 'antd';
 import { ColumnsType } from 'antd/es/table';
 import dayjs from 'dayjs';
 import { useEffect, useState } from 'react';
+import rrwebPlayer from 'rrweb-player';
+import 'rrweb-player/dist/style.css';
 import { useShallow } from 'zustand/shallow';
 import './index.less';
 
@@ -19,10 +21,33 @@ interface ModalDetail {
   data: any;
 }
 
-const titleMap = {
-  revertCode: '查看源码',
-  playRecord: '播放录屏',
-  revertBehavior: '用户行为',
+/** 获取弹窗配置 */
+const handleGetModalConfig = (modalDetail: ModalDetail) => {
+  const { type, data } = modalDetail;
+
+  switch (type) {
+    case 'revertCode':
+      return {
+        title: '查看源码',
+        width: '1072px',
+        className: 'revert-code-modal',
+        content: <div dangerouslySetInnerHTML={{ __html: data }}></div>,
+      };
+    case 'playRecord':
+      return {
+        title: '播放录屏',
+        width: '1072px',
+        className: 'play-record-modal',
+        content: <div id="record-screen"></div>,
+      };
+    case 'revertBehavior':
+      return {
+        title: '用户行为',
+        width: '1072px',
+        className: 'revert-behavior-modal',
+        content: <Timeline items={data} />,
+      };
+  }
 };
 
 const Home = () => {
@@ -50,11 +75,12 @@ const Home = () => {
 
   /** 播放录屏 */
   const handlePlayRecord = (record: any) => {
-    const resp = data.recordScreenList?.filter(
+    const resp = data.recordScreenList?.find(
       (item) => item.recordScreenId === record.recordScreenId,
     );
-    if (Array.isArray(resp) && resp[0] && resp[0]?.events) {
-      const events = unzipUtil(resp[0]?.events);
+
+    if (resp && resp?.events) {
+      const events = unzipUtil(resp?.events);
       setModalDetail({ open: true, type: 'playRecord', data: events });
     } else {
       message.warning('暂无数据，请稍后重试~');
@@ -142,12 +168,20 @@ const Home = () => {
       dataIndex: 'action',
       width: 220,
       render: (text, record) => {
+        const disabled = !data?.recordScreenList?.some(
+          (item) => item.recordScreenId === record.recordScreenId,
+        );
         return (
           <Space wrap>
             <Button type="link" style={{ padding: 0 }} onClick={() => handleRevertCode(record)}>
               查看源码
             </Button>
-            <Button type="link" style={{ padding: 0 }} onClick={() => handlePlayRecord(record)}>
+            <Button
+              type="link"
+              disabled={disabled}
+              style={{ padding: 0 }}
+              onClick={() => handlePlayRecord(record)}
+            >
               播放录屏
             </Button>
             <Button type="link" style={{ padding: 0 }} onClick={() => handeRevertBehavior(record)}>
@@ -167,6 +201,18 @@ const Home = () => {
   const handleModalCancel = () => {
     setModalDetail({ open: false, type: 'revertCode', data: '' });
   };
+
+  /** 弹窗打开/关闭事件 */
+  const handleAfterOpenChange = (open: boolean) => {
+    if (open && modalDetail.type === 'playRecord') {
+      new rrwebPlayer({
+        target: document.querySelector('#record-screen')!, // customizable root element
+        props: { events: modalDetail.data, UNSAFE_replayCanvas: true },
+      });
+    }
+  };
+
+  const modalConfig = handleGetModalConfig(modalDetail);
 
   return (
     <div className="home">
@@ -196,17 +242,17 @@ const Home = () => {
       </div>
 
       <Modal
-        width={'80%'}
         open={modalDetail.open}
-        title={titleMap[modalDetail.type]}
-        onCancel={handleModalCancel}
+        width={modalConfig.width}
+        title={modalConfig.title}
         maskClosable={false}
         footer={null}
-        rootClassName="modal"
+        destroyOnHidden={true}
+        rootClassName={`modal ${modalConfig.className}`}
+        onCancel={handleModalCancel}
+        afterOpenChange={handleAfterOpenChange}
       >
-        {modalDetail.type === 'revertCode' && <></>}
-        {modalDetail.type === 'playRecord' && <></>}
-        {modalDetail.type === 'revertBehavior' && <Timeline items={modalDetail.data} />}
+        {modalConfig.content}
       </Modal>
     </div>
   );

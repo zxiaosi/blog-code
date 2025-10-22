@@ -1,6 +1,5 @@
 import { useLogData } from '@/hooks';
 import webSee from '@websee/core';
-import performance from '@websee/performance';
 import recordscreen from '@websee/recordscreen';
 import { clearDataUtil, exportDataUtil, writeDataUtil } from './utils';
 
@@ -45,7 +44,7 @@ webSee.init({
   },
 });
 // webSee.use(performance, {}); // 性能监控插件
-// webSee.use(recordscreen, {}); // 录屏插件
+webSee.use(recordscreen, {}); // 录屏插件
 
 /**
  * 在 window 定义 monitor 变量

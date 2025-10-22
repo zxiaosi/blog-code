@@ -2,29 +2,28 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--padding-lg);
 
   .home-top {
-    height: 400px;
+    height: 240px;
     display: flex;
-    gap: 20px;
+    gap: var(--padding-lg);
     justify-content: space-between;
 
     .home-top-left {
-      width: 40%;
+      width: 60%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 20px;
     }
 
     .home-top-right {
-      width: calc(100% - 40% - 20px);
+      width: calc(100% - 60% - var(--padding-lg));
     }
   }
 
   .home-bottom {
-    height: calc(100% - 400px - 20px);
+    height: calc(100% - 240px - var(--padding-lg));
     overflow-y: auto;
   }
 }

@@ -56,10 +56,10 @@ const BaseLayout = () => {
         />
       </Sider>
       <Layout>
-        <Content style={{ margin: 16 }}>
+        <Content style={{ margin: 'var(--padding-lg)' }}>
           <div
             style={{
-              padding: 24,
+              padding: 'var(--padding-lg)',
               height: '100%',
               background: colorBgContainer,
               borderRadius: borderRadiusLG,

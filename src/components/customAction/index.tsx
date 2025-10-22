@@ -1,13 +1,46 @@
 import { useLogData } from '@/hooks';
-import { clearDataUtil, exportDataUtil } from '@/monitor/utils';
-import { Button, Space } from 'antd';
+import { clearDataUtil, CUSTOM_STORAGE, exportDataUtil, LogData } from '@/monitor/utils';
+import { Button, Space, Upload, UploadProps } from 'antd';
+import { setMany } from 'idb-keyval';
+import { useShallow } from 'zustand/shallow';
 import './index.less';
 
+/** 读取文件 */
+const handleReadFile = async (file: any) => {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+
+    reader.onload = (resp) => {
+      const result = resp.target?.result;
+      return resolve(result);
+    };
+
+    reader.onerror = (err) => {
+      console.log('handleReadFile', err);
+      resolve('{}');
+    };
+
+    reader.readAsText(file);
+  });
+};
+
 const CustomAction = () => {
-  const getData = useLogData((state) => state.getData);
+  const [loading, getData] = useLogData(useShallow((state) => [state.loading, state.getData]));
+
+  /** 刷新数据 */
+  const handleRefreshData = () => {
+    getData();
+  };
 
   /** 导入数据 */
-  const handleImportData = () => {};
+  const handleImportData: UploadProps['customRequest'] = async (info) => {
+    const { file } = info;
+    const result = await handleReadFile(file);
+    const resultArr: LogData[] = JSON.parse(typeof result === 'string' ? result : '[]');
+    const data = resultArr.map((item) => [item.createTime + '', item]) as any;
+    await setMany(data, CUSTOM_STORAGE);
+    await getData();
+  };
 
   /** 导出数据 */
   const handleExportData = async () => {
@@ -23,11 +56,18 @@ const CustomAction = () => {
   return (
     <div className="custom-action">
       <Space wrap>
-        <Button type="primary" onClick={handleImportData}>导入数据</Button>
-        <Button type="primary" onClick={handleExportData}>
+        <Button loading={loading} onClick={handleRefreshData}>
+          刷新数据
+        </Button>
+        <Upload showUploadList={false} customRequest={handleImportData} accept=".json" maxCount={1}>
+          <Button type="primary" loading={loading}>
+            导入数据
+          </Button>
+        </Upload>
+        <Button type="primary" loading={loading} onClick={handleExportData}>
           导出数据
         </Button>
-        <Button type="primary" danger onClick={handleClearData}>
+        <Button type="primary" loading={loading} danger onClick={handleClearData}>
           清空数据
         </Button>
       </Space>

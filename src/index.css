@@ -9,3 +9,9 @@ body {
   width: 100%;
   height: 100%;
 }
+
+:root {
+  --padding-lg: 16px;
+  --padding-md: 10px;
+  --padding-sm: 8px;
+}

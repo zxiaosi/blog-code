@@ -28,8 +28,8 @@ const CustomAction = () => {
   const [loading, getData] = useLogData(useShallow((state) => [state.loading, state.getData]));
 
   /** 刷新数据 */
-  const handleRefreshData = () => {
-    getData();
+  const handleRefreshData = async () => {
+    await getData();
   };
 
   /** 导入数据 */
@@ -50,7 +50,7 @@ const CustomAction = () => {
   /** 清空数据 */
   const handleClearData = async () => {
     await clearDataUtil();
-    getData();
+    await getData();
   };
 
   return (

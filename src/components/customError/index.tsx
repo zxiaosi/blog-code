@@ -1,7 +1,10 @@
+import { useLogData } from '@/hooks';
 import { Button, Space } from 'antd';
 import './index.less';
 
 const CustomError = () => {
+  const loading = useLogData((state) => state.loading);
+
   /** js错误 */
   const handleCodeError = () => {
     let a = undefined;
@@ -71,22 +74,22 @@ const CustomError = () => {
   return (
     <div className="custom-error">
       <Space wrap>
-        <Button variant="solid" color="purple" onClick={handleCodeError}>
+        <Button variant="solid" color="purple" loading={loading} onClick={handleCodeError}>
           js错误
         </Button>
-        <Button variant="solid" color="cyan" onClick={handleAsyncError}>
+        <Button variant="solid" color="cyan" loading={loading} onClick={handleAsyncError}>
           异步错误
         </Button>
-        <Button variant="solid" color="green" onClick={handlePromiseErr}>
+        <Button variant="solid" color="green" loading={loading} onClick={handlePromiseErr}>
           promise错误
         </Button>
-        <Button variant="solid" color="magenta" onClick={handleXhrError}>
+        <Button variant="solid" color="magenta" loading={loading} onClick={handleXhrError}>
           xhr请求报错
         </Button>
-        <Button variant="solid" color="orange" onClick={handleFetchError}>
+        <Button variant="solid" color="orange" loading={loading} onClick={handleFetchError}>
           fetch请求报错
         </Button>
-        <Button variant="solid" color="volcano" onClick={handleResourceError}>
+        <Button variant="solid" color="volcano" loading={loading} onClick={handleResourceError}>
           加载资源报错
         </Button>
       </Space>

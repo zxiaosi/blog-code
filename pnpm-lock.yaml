@@ -32,6 +32,12 @@ importers:
       idb-keyval:
         specifier: ^6.2.2
         version: 6.2.2
+      js-base64:
+        specifier: ^3.7.8
+        version: 3.7.8
+      pako:
+        specifier: ^2.1.0
+        version: 2.1.0
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -44,6 +50,9 @@ importers:
       react-router-dom:
         specifier: ^6.30.1
         version: 6.30.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      source-map-js:
+        specifier: ^1.2.1
+        version: 1.2.1
       zustand:
         specifier: ^5.0.8
         version: 5.0.8(@types/react@18.3.26)(react@18.3.1)
@@ -798,6 +807,9 @@ packages:
 
   js-base64@3.7.3:
     resolution: {integrity: sha512-PAr6Xg2jvd7MCR6Ld9Jg3BmTcjYsHEBx1VlwEwULb/qowPf5VD9kEMagj23Gm7JRnSvE/Da/57nChZjnvL8v6A==}
+
+  js-base64@3.7.8:
+    resolution: {integrity: sha512-hNngCeKxIUQiEUN3GPJOkz4wF/YvdUdbNL9hsBcMQTkKzboD7T/q3OYOuuPZLUE6dBxSGpwhk5mwuDud7JVAow==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -2021,6 +2033,8 @@ snapshots:
   is-what@3.14.1: {}
 
   js-base64@3.7.3: {}
+
+  js-base64@3.7.8: {}
 
   js-tokens@4.0.0: {}
 

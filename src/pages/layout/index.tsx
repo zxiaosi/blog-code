@@ -1,5 +1,5 @@
-import { DashboardOutlined, UserOutlined } from '@ant-design/icons';
-import { Layout, Menu, MenuProps, theme } from 'antd';
+import { DashboardOutlined, GithubOutlined, UserOutlined } from '@ant-design/icons';
+import { FloatButton, Layout, Menu, MenuProps, theme } from 'antd';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 
@@ -38,14 +38,24 @@ const BaseLayout = () => {
     navigate(`/${e.key}`);
   };
 
+  /** 跳转到Github */
+  const handleToGithub = () => {
+    window.open('https://github.com/zxiaosi/blog-code/tree/monitor');
+  };
+
   useEffect(() => {
     const path = location.pathname.slice(1); // 去掉开头的斜杠
     setSelectedKey([path]);
   }, [location]);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
-      <Sider width={160} collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+    <Layout style={{ height: '100vh' }}>
+      <Sider
+        width={160}
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
@@ -53,6 +63,13 @@ const BaseLayout = () => {
           items={menuItems}
           selectedKeys={selectedKey}
           onClick={handleMenuClick}
+        />
+
+        <FloatButton
+          type="primary"
+          icon={<GithubOutlined />}
+          onClick={handleToGithub}
+          style={{ insetInlineEnd: 16, insetBlockStart: '20px' }}
         />
       </Sider>
       <Layout>
